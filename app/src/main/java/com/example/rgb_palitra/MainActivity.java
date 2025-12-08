@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.SeekBar;
 import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView green;
     SeekBar blueBar;
     TextView blue;
+    Button layoutChange;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,19 @@ public class MainActivity extends AppCompatActivity {
         red = findViewById(R.id.textView8);
         green = findViewById(R.id.textView7);
         blue = findViewById(R.id.textView6);
+
+
+        layoutChange = findViewById(R.id.button);
+
+
+        layoutChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         red.setText(String.valueOf(redBar.getProgress()));
