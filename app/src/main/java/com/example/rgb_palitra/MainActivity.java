@@ -1,5 +1,6 @@
 package com.example.rgb_palitra;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.SeekBar;
@@ -31,13 +32,19 @@ public class MainActivity extends AppCompatActivity {
 
         redBar = findViewById(R.id.seekBar11);
         redBar.setMax(255);
+        redBar.setProgress(255);
         greenBar = findViewById(R.id.seekBar8);
         greenBar.setMax(255);
+        greenBar.setProgress(255);
         blueBar = findViewById(R.id.seekBar2);
         blueBar.setMax(255);
+        blueBar.setProgress(255);
         red = findViewById(R.id.textView8);
+        red.setTextColor(Color.RED);
         green = findViewById(R.id.textView7);
+        green.setTextColor(Color.GREEN);
         blue = findViewById(R.id.textView6);
+        blue.setTextColor(Color.BLUE);
 
 
         layoutChange = findViewById(R.id.button);
@@ -47,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ColorActivity.class);
+                intent.putExtra("KEY_INT1", redBar.getProgress());
+                intent.putExtra("KEY_INT2", greenBar.getProgress());
+                intent.putExtra("KEY_INT3", blueBar.getProgress());
                 startActivity(intent);
             }
         });
@@ -58,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 red.setText(String.valueOf(progress));
+                red.setTextColor(Color.rgb(progress, 0, 0));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -71,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 green.setText(String.valueOf(progress));
+                green.setTextColor(Color.rgb(0, progress, 0));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -84,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 blue.setText(String.valueOf(progress));
+                blue.setTextColor(Color.rgb(0, 0, progress));
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
